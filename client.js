@@ -25,6 +25,13 @@ on('mrp:radial_menu:addMenuItem', (data) => {
     }));
 });
 
+on('mrp:radial_menu:removeMenuItem', (data) => {
+    SendNuiMessage(JSON.stringify({
+        type: 'removeItem',
+        item: data
+    }));
+});
+
 RegisterCommand('showMenu', () => {
     menuOpen = !menuOpen;
     emit('mrp:radial_menu:toggle');

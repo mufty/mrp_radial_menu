@@ -73,6 +73,10 @@ $(document).ready(function() {
         });
     }
 
+    function removeItem(item) {
+        $('#' + item.id).parent().remove();
+    }
+
     window.addEventListener('message', (event) => {
         var data = event.data;
         switch (data.type) {
@@ -81,6 +85,9 @@ $(document).ready(function() {
                 break;
             case "addItem":
                 addItem(data.item);
+                break;
+            case "removeItem":
+                removeItem(data.item);
                 break;
             default:
                 break;

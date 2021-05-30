@@ -32,3 +32,11 @@ TriggerEvent('mrp:radial_menu:addMenuItem', {
         text = "Revive",
         action = "https://mrp_core/revive"
 })
+
+To remove a menu item use the same approach for event mrp:radial_menu:removeMenuItem with onbject:
+
+{
+    id: 'revive'
+}
+
+where "id" is the menu item to remove.
