@@ -58,6 +58,24 @@ $(document).ready(function() {
 
     $('.selector').hide();
 
+    function addSubmenu(elm, item) {
+        let mainDiv = $('<div class="submenu"></div>');
+
+        for (let submenu of item.submenu) {
+            let html = '<a href="#" id="' + submenu.id + '">' + submenu.text + '</a>';
+            mainDiv.append(html);
+            mainDiv.find("#" + submenu.id).click(() => {
+                $.post(submenu.action, JSON.stringify({
+                    id: submenu.id
+                }));
+                $('.submenu').hide();
+                toggleOptions('.selector');
+            });
+        }
+
+        elm.append(mainDiv);
+    }
+
     function addItem(item) {
         if (!item || $('#' + item.id).length > 0)
             return;
@@ -66,10 +84,21 @@ $(document).ready(function() {
             '<input id="' + item.id + '" type="checkbox">' +
             '<label for = "' + item.id + '">' + item.text + '</label>' +
             '</li>';
+        html = $(html);
+        if (item.submenu) {
+            addSubmenu(html, item);
+        }
         $('.selector ul').append(html);
         $('.selector ul #' + item.id).change(() => {
-            $.post(item.action, JSON.stringify({}));
-            toggleOptions('.selector');
+            if (!item.submenu) {
+                $.post(item.action, JSON.stringify({
+                    id: item.id
+                }));
+                toggleOptions('.selector');
+            } else {
+                //toggle submenu
+                $('.selector ul #' + item.id).parent().find('.submenu').toggle();
+            }
         });
     }
 
