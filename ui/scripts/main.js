@@ -18,6 +18,10 @@ $(document).ready(function() {
                     .css({
                         transform: 'rotate(' + (-now) + 'deg)'
                     });
+                $(li).find('div')
+                    .css({
+                        transform: 'rotate(' + (-now) + 'deg)'
+                    });
             },
             duration: 0
         });
