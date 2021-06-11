@@ -4,7 +4,7 @@ RegisterNuiCallbackType('close');
 on('__cfx_nui:close', (data, cb) => {
     SetNuiFocus(false, false);
     menuOpen = false;
-    cb();
+    cb({});
 });
 
 on('mrp:radial_menu:toggle', () => {
