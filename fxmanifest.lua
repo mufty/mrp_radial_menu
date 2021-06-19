@@ -15,5 +15,6 @@ files {
 }
 
 client_scripts {
+    '@mrp_core/shared/debug.js',
     'client.js',
 }
