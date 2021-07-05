@@ -81,8 +81,13 @@ $(document).ready(function() {
     }
 
     function addItem(item) {
-        if (!item || $('#' + item.id).length > 0)
+        if (!item)
             return;
+
+        if ($('#' + item.id).length > 0) {
+            //remove existing before updating or creating a new one
+            removeItem(item);
+        }
 
         let html = '<li>' +
             '<input id="' + item.id + '" type="checkbox">' +
