@@ -18,7 +18,7 @@ on('mrp:radial_menu:toggle', () => {
     }));
 });
 
-on('mrp:radial_menu:addMenuItem', (data) => {
+onNet('mrp:radial_menu:addMenuItem', (data) => {
     SendNuiMessage(JSON.stringify({
         type: 'addItem',
         item: data
