@@ -84,7 +84,7 @@ $(document).ready(function() {
         if (!item)
             return;
 
-        if ($('#' + item.id).length > 0) {
+        if ($('#' + item.id).length > 0 && !item.persist) {
             //remove existing before updating or creating a new one
             removeItem(item);
         }
@@ -97,18 +97,21 @@ $(document).ready(function() {
         if (item.submenu) {
             addSubmenu(html, item);
         }
-        $('.selector ul').append(html);
-        $('.selector ul #' + item.id).change(() => {
-            if (!item.submenu) {
-                $.post(item.action, JSON.stringify({
-                    id: item.id
-                }));
-                toggleOptions('.selector');
-            } else {
-                //toggle submenu
-                $('.selector ul #' + item.id).parent().find('.submenu').toggle();
-            }
-        });
+
+        if (!item.persist || (item.persist && $('#' + item.id).length <= 0)) {
+            $('.selector ul').append(html);
+            $('.selector ul #' + item.id).change(() => {
+                if (!item.submenu) {
+                    $.post(item.action, JSON.stringify({
+                        id: item.id
+                    }));
+                    toggleOptions('.selector');
+                } else {
+                    //toggle submenu
+                    $('.selector ul #' + item.id).parent().find('.submenu').toggle();
+                }
+            });
+        }
     }
 
     function removeItem(item) {
