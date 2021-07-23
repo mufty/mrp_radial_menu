@@ -107,6 +107,8 @@
     display: none;
     width: 300px;
     z-index: 200;
+    overflow: auto;
+    max-height: 300px;
 }
 
 .submenu a {
