@@ -109,6 +109,11 @@ $(document).ready(function() {
                 } else {
                     //toggle submenu
                     $('.selector ul #' + item.id).parent().find('.submenu').toggle();
+                    if ($('.selector ul #' + item.id).parent().find('.submenu').is(':visible')) {
+                        html.css('z-index', 1000);
+                    } else {
+                        html.css('z-index', 1);
+                    }
                 }
             });
         }
